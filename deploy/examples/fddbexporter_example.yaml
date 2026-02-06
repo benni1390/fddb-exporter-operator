@@ -1,0 +1,24 @@
+apiVersion: fddb.benni1390.github.io/v1alpha1
+kind: FddbExporter
+metadata:
+  name: fddb-exporter-example
+  namespace: default
+spec:
+  helmChart:
+    version: "0.0.14"
+  image:
+    tag: "0.0.1"
+  scrapeInterval: "300"
+  credentialsSecretName: fddb-credentials
+  serviceMonitor:
+    enabled: true
+    interval: "30s"
+  prometheusRule:
+    enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
