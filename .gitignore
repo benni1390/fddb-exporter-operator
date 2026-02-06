@@ -14,3 +14,7 @@ htmlcov/
 *~
 .vscode/
 .idea/
+
+# Local development files
+.local/
+.github/copilot-instructions.md

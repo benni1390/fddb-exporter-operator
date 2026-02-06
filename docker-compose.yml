@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  operator:
+    build: .
+    volumes:
+      - ~/.kube/config:/root/.kube/config:ro
+    environment:
+      - KUBECONFIG=/root/.kube/config
