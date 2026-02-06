@@ -1,4 +1,4 @@
-.PHONY: test build run-local lint
+.PHONY: test build run-local lint helm-lint helm-package
 
 test:
 	docker run --rm -v $(CURDIR):/workspace -w /workspace -e PYTHONPATH=/workspace python:3.11-slim \
@@ -14,3 +14,9 @@ run-local:
 lint:
 	docker run --rm -v $(CURDIR):/workspace -w /workspace python:3.11-slim \
 		bash -c "pip install -r requirements.txt pylint && pylint fddb_operator.py"
+
+helm-lint:
+	docker run --rm -v $(CURDIR):/workspace -w /workspace alpine/helm:latest lint chart/fddb-exporter-operator
+
+helm-package:
+	docker run --rm -v $(CURDIR):/workspace -w /workspace alpine/helm:latest package chart/fddb-exporter-operator -d .charts

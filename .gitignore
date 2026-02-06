@@ -18,3 +18,4 @@ htmlcov/
 # Local development files
 .local/
 .github/copilot-instructions.md
+.charts
