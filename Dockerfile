@@ -12,4 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY fddb_operator.py .
 
+RUN helm repo add benni1390 https://benni1390.github.io/fddb-exporter-deployment && \
+    helm repo update
+
 CMD ["kopf", "run", "fddb_operator.py", "--verbose"]
