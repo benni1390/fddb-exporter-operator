@@ -8,11 +8,25 @@ This operator automates the deployment of fddb-exporter instances in Kubernetes 
 
 ## Installation
 
+### Add Helm Repository
+
+```bash
+helm repo add benni1390 https://benni1390.github.io/fddb-exporter-deployment
+helm repo update
+```
+
+### Install CRD
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/benni1390/fddb-exporter-operator/main/deploy/crds/fddbexporter_crd.yaml
+```
+
 ### Deploy the Operator
 
 ```bash
-kubectl apply -f deploy/crds/fddbexporter_crd.yaml
-kubectl apply -f deploy/operator.yaml
+kubectl create namespace fddb-operator-system
+helm install fddb-operator benni1390/fddb-exporter-operator \
+  --namespace fddb-operator-system
 ```
 
 ### Create an FddbExporter Instance
